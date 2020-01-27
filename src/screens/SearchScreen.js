@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import yelp from '../api/yelp';
 import SearchBar from '../components/SearchBar';
-import yelp from '../api/yelp'
-import { FlatList } from 'react-native-gesture-handler';
 
 const SearchScreen = () => {
 
     const [termino, setTermino] = useState('');
     const [results, setResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
+
+    console.log(results);
 
     const searchApi = async () => {
         try {
