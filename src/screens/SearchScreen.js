@@ -1,41 +1,35 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import yelp from '../api/yelp';
 import SearchBar from '../components/SearchBar';
+import useResults from '../hooks/useResults';
+import ResultList from '../components/ResultList';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const SearchScreen = () => {
 
     const [termino, setTermino] = useState('');
-    const [results, setResults] = useState([]);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [searchApi, results, errorMessage] = useResults();
 
-    console.log(results);
-
-    const searchApi = async () => {
-        try {
-            const response = await yelp.get('/search', {
-                params: {
-                    limit: 50,
-                    // Si el parametro que le pasamos es igual a la key se puede usar term en vez de term: term
-                    term: termino,
-                    location: 'buenos aires'
-                }
-            });
-            setResults(response.data.businesses);
-        } catch (e) {
-            setErrorMessage('Algo salió mal');
-        }
+    // Otra opcion es pasar la lista completa a los 3 ResultList y 
+    // cada componente se encarga de filtrar o mostrar lo que le interesa
+    const filterResultsByPrice = (price) => {
+        return results.filter(result => result.price === price)
     }
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <SearchBar
                 term={termino}
                 onTermChange={setTermino}
-                onTermSubmit={searchApi}
+                onTermSubmit={() => searchApi(termino)}
             />
             {errorMessage ? <Text>{errorMessage}</Text> : null}
-            <Text>Se encontraron: {results.length} restaurantes</Text>
+            <Text style={{ alignSelf: 'center' }}>Se encontraron: {results.length} restaurantes</Text>
+            <ScrollView>
+                <ResultList results={filterResultsByPrice('$')} title="Barato" />
+                <ResultList results={filterResultsByPrice('$$')} title="No tan barato" />
+                <ResultList results={filterResultsByPrice('$$$')} title="Caro" />
+            </ScrollView>
         </View>
     )
 }
