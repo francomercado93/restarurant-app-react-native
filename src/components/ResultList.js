@@ -24,13 +24,12 @@ const ResultList = ({ title, results }) => {
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: "bold",
         marginLeft: 15,
-        // marginTop: 5
     },
     container: {
-        marginBottom: 5
+        marginBottom: 10
     }
 })
 

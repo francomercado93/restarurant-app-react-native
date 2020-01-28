@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginHorizontal: 15,
         flexDirection: 'row',
-        marginTop: 10
+        marginVertical: 10,
     },
     inputStyle: {
         flex: 1,
-        fontSize: 18
+        fontSize: 18,
     },
     iconStyle: {
         fontSize: 35,

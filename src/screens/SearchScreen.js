@@ -17,23 +17,24 @@ const SearchScreen = () => {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <>
             <SearchBar
                 term={termino}
                 onTermChange={setTermino}
                 onTermSubmit={() => searchApi(termino)}
             />
             {errorMessage ? <Text>{errorMessage}</Text> : null}
-            <Text style={{ alignSelf: 'center' }}>Se encontraron: {results.length} restaurantes</Text>
+            <Text style={{ alignSelf: 'center', marginBottom: 10 }}>Se encontraron: {results.length} restaurantes</Text>
             <ScrollView>
                 <ResultList results={filterResultsByPrice('$')} title="Barato" />
                 <ResultList results={filterResultsByPrice('$$')} title="No tan barato" />
-                <ResultList results={filterResultsByPrice('$$$')} title="Caro" />
+                <ResultList results={filterResultsByPrice('$$$')} title="Costoso" />
+                <ResultList results={filterResultsByPrice('$$$$')} title="No entres ahí" />
             </ScrollView>
-        </View>
+        </>
     )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
 
 export default SearchScreen;
