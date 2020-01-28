@@ -6,10 +6,14 @@ import { withNavigation } from 'react-navigation';
 
 const ResultList = ({ title, results, navigation }) => {
 
+    if (!results.length) {
+        return null;
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{title}</Text>
-            {results.length == 0 ? <Text style={styles.alert}>No hay restaurantes en esta categoria</Text> : null}
+            {/* {results.length == 0 ? <Text style={styles.alert}>No hay restaurantes en esta categoria</Text> : null} */}
             <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
