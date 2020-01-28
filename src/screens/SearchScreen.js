@@ -26,10 +26,20 @@ const SearchScreen = () => {
             {errorMessage ? <Text>{errorMessage}</Text> : null}
             <Text style={{ alignSelf: 'center', marginBottom: 10 }}>Se encontraron: {results.length} restaurantes</Text>
             <ScrollView>
-                <ResultList results={filterResultsByPrice('$')} title="Barato" />
-                <ResultList results={filterResultsByPrice('$$')} title="No tan barato" />
-                <ResultList results={filterResultsByPrice('$$$')} title="Costoso" />
-                <ResultList results={filterResultsByPrice('$$$$')} title="No entres ahí" />
+                <ResultList
+                    results={filterResultsByPrice('$')}
+                    title="Barato"
+                />
+                <ResultList
+                    results={filterResultsByPrice('$$')}
+                    title="No tan barato" />
+                <ResultList
+                    results={filterResultsByPrice('$$$')}
+                    title="Costoso" />
+                <ResultList
+                    results={filterResultsByPrice('$$$$')}
+                    title="No entres ahí"
+                />
             </ScrollView>
         </>
     )
