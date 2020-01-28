@@ -8,7 +8,6 @@ const ResultList = ({ title, results }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{title}</Text>
-            {/* <Text>Resultados: {results.length}</Text> */}
             <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
